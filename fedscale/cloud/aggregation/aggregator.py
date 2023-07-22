@@ -286,6 +286,8 @@ class Aggregator(job_api_pb2_grpc.JobServiceServicer):
 
         logging.info("Info of all feasible clients {}".format(
             self.client_manager.getDataInfo()))
+        print("Aggregator: Info of all feasible clients {}".format(
+            self.client_manager.getDataInfo()))
 
     def executor_info_handler(self, executorId, info):
         """Handler for register executor info and it will start the round after number of
@@ -519,6 +521,9 @@ class Aggregator(job_api_pb2_grpc.JobServiceServicer):
         avg_loss = sum(self.loss_accumulator) / max(1, len(self.loss_accumulator))
         logging.info(f"Wall clock: {round(self.global_virtual_clock)} s, round: {self.round}, Planned participants: " +
                      f"{len(self.sampled_participants)}, Succeed participants: {len(self.stats_util_accumulator)}, Training loss: {avg_loss}")
+        
+        print(f"Wall clock: {round(self.global_virtual_clock)} s, round: {self.round}, Planned participants: " + 
+              f"{len(self.sampled_participants)}, Succeed participants: {len(self.stats_util_accumulator)}, Training loss: {avg_loss}")
 
         # dump round completion information to tensorboard
         if len(self.loss_accumulator):

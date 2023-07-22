@@ -193,6 +193,9 @@ class ClientManager:
 
         logging.info(f"Wall clock time: {round(cur_time)}, {len(clients_online)} clients online, " +
                      f"{len(self.feasibleClients) - len(clients_online)} clients offline")
+        
+        print(f"Client manager: Wall clock time: {round(cur_time)}, {len(clients_online)} clients online, " +
+                     f"{len(self.feasibleClients) - len(clients_online)} clients offline")
 
         return clients_online
 
