@@ -281,6 +281,8 @@ class Aggregator(job_api_pb2_grpc.JobServiceServicer):
                 download_size=self.model_update_size
             )
             self.num_of_clients += 1
+            
+            print(f"Aggregator: client size {self.num_of_clients}")
 
         logging.info("Info of all feasible clients {}".format(
             self.client_manager.getDataInfo()))
@@ -298,6 +300,7 @@ class Aggregator(job_api_pb2_grpc.JobServiceServicer):
         logging.info(
             f"Received executor {executorId} information, {len(self.registered_executor_info)}/{len(self.executors)}")
 
+        print(f"Aggregator: Received executor {executorId} information, {len(self.registered_executor_info)}/{len(self.executors)}")
         # In this simulation, we run data split on each worker, so collecting info from one executor is enough
         # Waiting for data information from executors, or timeout
         if self.experiment_mode == commons.SIMULATION_MODE:
@@ -772,7 +775,9 @@ class Aggregator(job_api_pb2_grpc.JobServiceServicer):
             self.individual_client_events[executor_id] = collections.deque()
         else:
             logging.info(f"Previous client: {executor_id} resumes connecting")
-
+        
+        print(f"Aggregator: executor {executor_id} register")
+        
         # We can customize whether to admit the clients here
         self.executor_info_handler(executor_id, executor_info)
         dummy_data = self.serialize_response(commons.DUMMY_RESPONSE)
