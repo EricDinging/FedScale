@@ -833,7 +833,7 @@ class Aggregator(job_api_pb2_grpc.JobServiceServicer):
                                               meta=response_msg, data=response_data)
         if current_event != commons.DUMMY_EVENT:
             logging.info(f"Issue EVENT ({current_event}) to EXECUTOR ({executor_id})")
-        print(f"Aggregator: Issue EVENT ({current_event}) to EXECUTOR ({executor_id})")
+        print(f"Aggregator: Client {client_id} at executor {executor_id} ping, Issue EVENT ({current_event}) to EXECUTOR ({executor_id})")
         return response
 
     def CLIENT_EXECUTE_COMPLETION(self, request, context):
@@ -850,7 +850,7 @@ class Aggregator(job_api_pb2_grpc.JobServiceServicer):
         executor_id, client_id, event = request.executor_id, request.client_id, request.event
         execution_status, execution_msg = request.status, request.msg
         meta_result, data_result = request.meta_result, request.data_result
-
+        print(f"Aggregator: recieve {client_id} at executor {executor_id} completion, event {event}")
         if event == commons.CLIENT_TRAIN:
             # Training results may be uploaded in CLIENT_EXECUTE_RESULT request later,
             # so we need to specify whether to ask client to do so (in case of straggler/timeout in real FL).
