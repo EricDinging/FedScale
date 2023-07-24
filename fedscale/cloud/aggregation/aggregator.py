@@ -833,7 +833,7 @@ class Aggregator(job_api_pb2_grpc.JobServiceServicer):
                                               meta=response_msg, data=response_data)
         if current_event != commons.DUMMY_EVENT:
             logging.info(f"Issue EVENT ({current_event}) to EXECUTOR ({executor_id})")
-
+        print(f"Aggregator: Issue EVENT ({current_event}) to EXECUTOR ({executor_id})")
         return response
 
     def CLIENT_EXECUTE_COMPLETION(self, request, context):
