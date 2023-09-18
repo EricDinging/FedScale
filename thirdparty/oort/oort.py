@@ -331,6 +331,11 @@ class _training_selector(object):
                 break
             tempPickedClients.append(client_id)
 
+        ## Contention
+        num_job = 1
+        num_client = int(len(tempPickedClients) / num_job)
+        tempPickedClients = random.sample(tempPickedClients, num_client)
+
         augment_factor = len(tempPickedClients)
 
         totalSc = max(1e-4, float(sum([scores[key] for key in tempPickedClients])))
