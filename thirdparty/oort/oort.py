@@ -2,7 +2,7 @@ import logging
 import math
 from collections import OrderedDict
 from random import Random
-
+from random import sample
 import numpy
 import numpy as np2
 
@@ -334,7 +334,7 @@ class _training_selector(object):
         ## Contention
         num_job = 1
         num_client = int(len(tempPickedClients) / num_job)
-        tempPickedClients = random.sample(tempPickedClients, num_client)
+        tempPickedClients = sample(tempPickedClients, k=num_client)
 
         augment_factor = len(tempPickedClients)
 
