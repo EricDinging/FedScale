@@ -332,9 +332,9 @@ class _training_selector(object):
             tempPickedClients.append(client_id)
 
         ## Contention
-        num_job = 1
-        num_client = int(len(tempPickedClients) / num_job)
-        tempPickedClients = sample(tempPickedClients, k=num_client)
+        # num_job = 1
+        # num_client = int(len(tempPickedClients) / num_job)
+        # tempPickedClients = sample(tempPickedClients, k=num_client)
 
         augment_factor = len(tempPickedClients)
 
