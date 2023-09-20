@@ -43,7 +43,7 @@ class TorchServerOptimizer(object):
                 [pb-pa for pa, pb in zip(last_model, current_model)])
 
             new_state_dict = {
-                name: torch.from_numpy(np.array(last_model[idx] + diff_weight[idx], dtype=np.float32))
+                name: torch.from_numpy(np.array(last_model[idx].cpu() + diff_weight[idx].cpu(), dtype=np.float32))
                 for idx, name in enumerate(target_model.state_dict().keys())
             }
 
