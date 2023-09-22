@@ -11,7 +11,7 @@ RUN apt-get update && \
 
 RUN pip3 install --upgrade pip
 # Create a virtual environment and activate it
-RUN python3 -m pip3 install virtualenv
+RUN python3 -m pip install --user virtualenv
 RUN python3 -m virtualenv venv
 RUN /bin/bash -c "source venv/bin/activate"
 
