@@ -1,0 +1,15 @@
+version: '3'
+services:
+  femnist:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 4
+              capabilities: [gpu]
+    volumes:
+      - ${FEDSCALE_HOME}:/app/
