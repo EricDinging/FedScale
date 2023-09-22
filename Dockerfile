@@ -2,7 +2,7 @@
 FROM nvidia/cuda:11.6.2-devel-ubuntu20.04
 
 # Set the working directory inside the container
-WORKDIR /
+WORKDIR /app
 
 # Install necessary system packages
 
