@@ -5,11 +5,14 @@ FROM nvidia/cuda:11.6.2-devel-ubuntu20.04
 WORKDIR /app
 
 # Install necessary system packages
-RUN apt-get update && apt-get install -y python3.7 python3-pip
 
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip
+
+RUN pip3 install --upgrade pip
 # Create a virtual environment and activate it
-RUN python3.7 -m pip install virtualenv
-RUN python3.7 -m virtualenv venv
+RUN python -m pip install virtualenv
+RUN python -m virtualenv venv
 RUN /bin/bash -c "source venv/bin/activate"
 
 # Copy the requirements file into the container
