@@ -1,5 +1,5 @@
 # Use an official CUDA image as a parent image
-FROM nvidia/cuda:11.0-base-ubuntu20.04
+FROM nvidia/cuda:11.6.2-devel-ubuntu20.04
 
 # Set the working directory inside the container
 WORKDIR /app
