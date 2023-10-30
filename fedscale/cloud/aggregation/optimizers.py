@@ -31,6 +31,7 @@ class TorchServerOptimizer(object):
             target_model (PyTorch or TensorFlow nn module): Aggregated model.
         
         """
+        logging.warning(f"mode: {self.mode}, diff weight: {diff_weight[:10]} last model: {last_model[:10]}, current model: {current_model[:10]}")
         if self.mode == 'fed-yogi':
             """
             "Adaptive Federated Optimizations", 
@@ -42,8 +43,6 @@ class TorchServerOptimizer(object):
 
             diff_weight = self.gradient_controller.update(
                 [pb-pa for pa, pb in zip(last_model, current_model)])
-            
-            logging.info(f"mode: {self.mode}, diff weight: {diff_weight[:10]} last model: {last_model[:10]}, current model: {current_model[:10]}")
 
             new_state_dict = {
                 name: torch.from_numpy(np.array(last_model[idx] + diff_weight[idx], dtype=np.float32))
@@ -83,5 +82,6 @@ class TorchServerOptimizer(object):
                 param.data = last_model[idx] - Deltas[idx]/(hs+1e-10)
 
         else:
-            # The default optimizer, FedAvg, has been applied in aggregator.py on the fly
+            # The default optimizer, FedAvg, has been applied in aggregator.py on the fly   
             pass
+            
