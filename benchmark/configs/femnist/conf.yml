@@ -41,7 +41,7 @@ job_conf:
 #    - model_zoo: fedscale-torch-zoo
     - gradient_policy: yogi
     - eval_interval: 10                     # How many rounds to run a testing on the testing set
-    - rounds: 500                          # Number of rounds to run this training. We use 1000 in our paper, while it may converge w/ ~400 rounds
+    - rounds: 50                          # Number of rounds to run this training. We use 1000 in our paper, while it may converge w/ ~400 rounds
     - filter_less: 21                       # Remove clients w/ less than 21 samples
     - num_loaders: 2
     - local_steps: 5

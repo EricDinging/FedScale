@@ -3,6 +3,7 @@ from typing import List
 import numpy as np
 import torch
 import copy
+import logging
 from fedscale.cloud.aggregation.optimizers import TorchServerOptimizer
 from fedscale.cloud.internal.model_adapter_base import ModelAdapterBase
 

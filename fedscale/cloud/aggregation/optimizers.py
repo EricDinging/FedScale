@@ -1,5 +1,6 @@
 import numpy as np 
 import torch
+import logging
 class TorchServerOptimizer(object):
     """This is a abstract server optimizer class
     
@@ -41,6 +42,8 @@ class TorchServerOptimizer(object):
 
             diff_weight = self.gradient_controller.update(
                 [pb-pa for pa, pb in zip(last_model, current_model)])
+            
+            logging.info(f"mode: {self.mode}, diff weight: {diff_weight[:10]} last model: {last_model[:10]}, current model: {current_model[:10]}")
 
             new_state_dict = {
                 name: torch.from_numpy(np.array(last_model[idx] + diff_weight[idx], dtype=np.float32))
