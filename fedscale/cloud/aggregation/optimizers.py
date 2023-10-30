@@ -31,7 +31,7 @@ class TorchServerOptimizer(object):
             target_model (PyTorch or TensorFlow nn module): Aggregated model.
         
         """
-        logging.warning(f"mode: {self.mode}, diff weight: {diff_weight[:10]} last model: {last_model[:10]}, current model: {current_model[:10]}")
+        logging.warning(f"mode: {self.mode} last model: {last_model[:10]}, current model: {current_model[:10]}")
         if self.mode == 'fed-yogi':
             """
             "Adaptive Federated Optimizations", 
