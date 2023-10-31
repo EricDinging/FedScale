@@ -184,7 +184,7 @@ class Executor(object):
 
         """
         self.round += 1
-        self.model_adapter.set_weights(model_weights)
+        self.model_adapter.set_weights(model_weights, isOptmize=False)
 
     def Train(self, config):
         """Load train config and data to start training on that client
