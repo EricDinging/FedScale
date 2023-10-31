@@ -297,7 +297,7 @@ class Executor(object):
             dictionary: The train result
 
         """
-        self.model_adapter.set_weights(model)
+        self.model_adapter.set_weights(model, isOptimize=False)
         conf.client_id = client_id
         conf.tokenizer = tokenizer
         client_data = self.training_sets if self.args.task == "rl" else \
